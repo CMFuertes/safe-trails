@@ -28,7 +28,7 @@
     console.log("Had an increase of", response[selectedState].positiveIncrease, "cases");
     console.log("Total positive cases =", response[selectedState].positive);
     console.log("Data Updated on =", response[selectedState].dateChecked);
-
+    $("#following-data").text("Based on your selection, the following state's information is as follows:");
     $("#state-name").html("The State/Territory of: " + (response[selectedState].state));
     $("#state-increase").html("Had an increase of: " +(response[selectedState].positiveIncrease) + " cases since, " + (response[selectedState].dateChecked));
     $("#total-cases").html("Total positive cases: " + (response[selectedState].positive));

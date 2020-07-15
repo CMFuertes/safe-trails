@@ -40,9 +40,9 @@
 
         $(".saveState").on("click", function () {
           console.log("save me");
-          var savedState = $(this).siblings(".description").val();
+          var savedState = $(this).siblings("#state-name").val();
           console.log(savedState);
-          var stateInfo = $(this).parent().attr("id");
+          var stateInfo = $(this).parent().attr(".saved-state1");
           console.log(stateInfo);
           localStorage.setItem(stateInfo), JSON.stringify(savedState);
 

@@ -29,10 +29,10 @@
     console.log("Total positive cases =", response[selectedState].positive);
     console.log("Data Updated on =", response[selectedState].dateChecked);
 
-    $("#state-name").html((response[selectedState].state));
-    $("#state-increase").html((response[selectedState].positiveIncrease));
-    $("#total-cases").html((response[selectedState].positive));
-    $("#date-updated").html((response[selectedState].dateChecked));
+    $("#state-name").html("The State/Territory of: " + (response[selectedState].state));
+    $("#state-increase").html("Had an increase of: " +(response[selectedState].positiveIncrease) + " cases since, " + (response[selectedState].dateChecked));
+    $("#total-cases").html("Total positive cases: " + (response[selectedState].positive));
+
     
     
   });

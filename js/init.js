@@ -12,7 +12,6 @@
   $("#submit").on("click", function(event) {
 
     event.preventDefault();       
-    console.log("inside click")
 
     var selectedState = parseInt($("#mySelection").val() );     
     console.log(selectedState);

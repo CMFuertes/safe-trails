@@ -28,6 +28,13 @@
     console.log("Had an increase of", response[selectedState].positiveIncrease, "cases");
     console.log("Total positive cases =", response[selectedState].positive);
     console.log("Data Updated on =", response[selectedState].dateChecked);
+
+    $("#state-name").html((response[selectedState].state));
+    $("#state-increase").html((response[selectedState].positiveIncrease));
+    $("#total-cases").html((response[selectedState].positive));
+    $("#date-updated").html((response[selectedState].dateChecked));
+    
+    
   });
         });
 })(jQuery); // end of jQuery name space

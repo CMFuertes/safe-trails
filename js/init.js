@@ -37,4 +37,16 @@
     
   });
         });
+
+        $(".saveState").on("click", function () {
+          console.log("save me");
+          var savedState = $(this).siblings(".description").val();
+          console.log(savedState);
+          var stateInfo = $(this).parent().attr("id");
+          console.log(stateInfo);
+          localStorage.setItem(stateInfo), JSON.stringify(savedState);
+
+        });
+
+        
 })(jQuery); // end of jQuery name space

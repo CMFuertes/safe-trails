@@ -14,7 +14,7 @@
     event.preventDefault();       
     console.log("inside click")
 
-    var selectedState = parseInt($("#myselection").val() );     
+    var selectedState = parseInt($("#mySelection").val() );     
     console.log(selectedState);
 
       var queryURL = "https://covidtracking.com/api/states";

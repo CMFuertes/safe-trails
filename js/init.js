@@ -40,8 +40,9 @@
 
         $(".saveState").on("click", function () {
           console.log("save me");
-             var stateAbr = response[selectedState].state;
-             localStorage.setItem("stateAbr", JSON.stringify(savedState));
+          var savedStateAbr = (response[selectedState].state)
+          console.log(savedStateAbr)
+             localStorage.setItem("savedStateAbr", JSON.stringify(savedStateAbr));
 
         });
 

@@ -1,51 +1,18 @@
+
+#navigation  {
+  color: #444;
+}
 .container
 {
-   /* margin-left: 5%;
-   margin-right: 5%; */
+
    padding: 0;
 }
-/* .cities-view{
-   padding-top: 5%;
-   padding-left: 8% ;
-   background:rgb(16, 211, 211);
-   font-size: 20px;
-   font-weight: 700;
-   height: 71px ;
-   max-width: 450px;
-   opacity:70%;
-   border-top-left-radius: 10px;
-   border-bottom-left-radius: 10px;
-}
-.imgD{
-   background:rgb(16, 211, 211);
-   height: 71px ;
-   max-width: 120px;
-   opacity:70%;
-   border-top-right-radius: 10px;
-   border-bottom-right-radius: 10px;
 
-} */
-/* .city-btn{
-   background-color: lightgray;
-   margin-left: 12%  ;
-   margin-bottom: 10px;
-   width: 120px;
-   padding: 5px;
-   list-style-type: none;
-   border-radius: 5px;
-   text-align: center;
-} */
 #city-input{
    width: 180px;
    padding-left: 10px;;
 }
-/* .city-btn:hover{
-   background: darkcyan;
-   cursor: pointer;
-}
-.citiesUL{
-   margin: 5px;
-} */
+
 #submit-city
 {
    width: 80px;
@@ -68,15 +35,7 @@
     border-radius: 10px;
     opacity:80%
  }
-/* .current-view{
-   max-height: 150px;
-   font-size: 12px;
-   max-width: 180px;
-   background:rgb(16, 211, 211);
-   border-radius: 10px;
-   opacity:70%;
-  
-} */
+
 header
 {
    text-align: center;
@@ -93,38 +52,11 @@ header
     display:none;
 }
 
-/* .uvSafe{
-    background-color: springgreen;
-    color:white;
-}
-.uvModerate{
-    background-color: yellow;
-   color: navy;
-}
-.uvSevere
-{
-    background-color:orangered;
-    color:white;
-}
-.uvSevere1{
-    background-color: red;
-    color:white;
-}
-.uvInsane{
-    background-color:purple;
-    color:white;
-}
-#uv{
-    padding:4px;
-    border-radius: 5px; */
-    
-/* } */
+
 #city-form{
     margin:10px 10px; 
 }
-/* .card-action a{
-    color: blue;
-} */
+
 
 .prognosis{
     margin-right:1%;
@@ -175,3 +107,6 @@ header
        padding: 3%;
     }
 }
+.navJ  {
+    color: #444;
+  }

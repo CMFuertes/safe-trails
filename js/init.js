@@ -35,16 +35,22 @@
 
  
     
-  });
-        });
+ 
 
         $(".saveState").on("click", function () {
           console.log("save me");
           var savedStateAbr = (response[selectedState].state)
           console.log(savedStateAbr)
-             localStorage.setItem("savedStateAbr", JSON.stringify(savedStateAbr));
+             localStorage.setItem("stateAbr", JSON.stringify(savedStateAbr));
+          var stateIncrease = (response[selectedState].positiveIncrease);
+          console.log(stateIncrease);
+          localStorage.setItem("statePosInc", JSON.stringify(stateIncrease));
+          var stateTotal = (response[selectedState].positive);
+          console.log(stateTotal);
+          localStorage.setItem("totalCases", JSON.stringify(stateTotal));
 
         });
-
+ });
+        });
         
 })(jQuery); // end of jQuery name space

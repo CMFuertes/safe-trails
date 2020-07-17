@@ -24,12 +24,12 @@
       method: "GET"
     }).then(function (response) { //async code block, it's going to run when you get the response back 
       console.log(response);
-      console.log("The State/Territory of:", response[selectedState].state);
+      console.log("The State of:", response[selectedState].state);
       console.log("Had an increase of", response[selectedState].positiveIncrease, "cases");
       console.log("Total positive cases =", response[selectedState].positive);
       console.log("Data Updated on =", response[selectedState].dateChecked);
       $("#following-data").text("Based on your selection, the following state's information is as follows:");
-      $("#state-name").html("The State/Territory of: " + (response[selectedState].state));
+      $("#state-name").html("The State of: " + (response[selectedState].state));
       $("#state-increase").html("Had an increase of: " + (response[selectedState].positiveIncrease) + " cases since,  " + (response[selectedState].dateChecked));
       $("#total-cases").html("Total positive cases: " + (response[selectedState].positive));
       $("#alert").html("<br><b>Notice:</b><br>Be advised that your destination may have travel restrictions in place. Please check <b>before</b> embarking.");

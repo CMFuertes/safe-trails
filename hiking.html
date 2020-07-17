@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style1.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment-with-locales.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>Trail Dashboard</title>
+</head>
+
+<body>
+    <nav class="white" role="navigation">
+        <div class="nav-wrapper container">
+          <a id="logo-container" href="#" class="brand-logo">RU CODING BOOTCAMP</a>
+          <ul class="right hide-on-med-and-down">
+            <li><a class="navJ" href="index.html">Covid info</a></li>
+            <li><a class="navJ" href="hiking.html">Weather info /trails Info</a></li>
+            <li><a class="navJ" href="#">Travel Info</a></li>
+            <!-- <li><a href="#">Navbar Link 1</a></li> -->
+          </ul>
+    
+          <ul id="nav-mobile" class="sidenav">
+            <li><a href="#">Navbar Link 2</a></li>
+            <li><a href="#">Navbar Link 2</a></li>
+            <li><a href="#">Navbar Link 2</a></li>
+            <li><a href="#">Navbar Link 2</a></li>
+          </ul>
+          <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+      </nav>
+    <header>
+        <p>Weather Dashboard/ Hiking and Bike trails</p>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col s9">
+                <form id="city-form">
+                    <label for="city-input">Search for trail near:</label>
+                    <input type="text" id="city-input">
+                    <!-- Button triggers acity to be submiteded -->
+                    <input id="submit-city" type="submit" value="Submit">
+                </form>
+            </div>
+            <div class="col s3">
+                <!-- place for debugMode slide   form-->
+                <div class="switchHolder swich">Debug Mode</div>
+                <!-- Switch -->
+                <div class="switch">
+                    <label>
+                        Off
+                        <input id="debugModePicker" type="checkbox">
+                        <span class="lever"></span>
+                        On
+                    </label>
+                </div>
+            </div>
+        </div>
+        <h6 class="fd-forecast no-show">5-Day Weather Forecast:</h6>
+        <div class="row">
+            <div class="col  s9">
+                <div class="col s2 prognosis  day1 no-show"></div>
+                <div class="col s2 prognosis  day2 no-show"></div>
+                <div class="col s2 prognosis  day3 no-show"></div>
+                <div class="col s2 prognosis  day4 no-show"></div>
+                <div class="col s2 prognosis  day5 no-show"></div>
+            </div>
+            <div class="col s3">
+                <!-- Modal Trigger -->
+                <a class=" btn modal-trigger modalJ" href="#modal1">Preferences</a>
+
+                <!-- Modal Structure -->
+                <div id="modal1" class="modal">
+                    <div class="modal-content">
+                        <h4>Your slections</h4>
+                        <input value="6f4c62189fmshacee60036d76b2cp101a45jsn8679c155c" id="APIkey3" type="string"
+                            class="validate">
+                        <label class="active" for="APIkey3_2">Please completethe last 3 symbols of the APIkey3</label>
+
+                        <input value="10" id="search-radius" type="number" class="validate">
+                        <label class="active" for="search_radius2">Search Radius in Miles</label>
+
+                        <input value="10" id="search-results" type="number" class="validate">
+                        <label class="active" for="search_results2">Number of Results to Return</label>
+                        <p>Happy trailing!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#modal1" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+<div class="container">
+
+    <div id="bike-trails-list" class="row">
+        <div class="col s5 m6 left">
+            <h5>Covid-19 cannot stop you and your family and friends to live a healthy life</h5>
+            <p> This app allows you to brouse the weather forecast for the next 5 days in the vicinity of a given city.
+                It returns a number of bike/hiking trails in a given radius around this city , and the basik info about each
+                trail.
+                to sellect the radius or the desired return results, please click on the button "preferences"
+                and chose values accordingly.
+    
+                In each trail card there is a click for more area, which will give the basik info for each trail.
+                under the thumbnail of the trail , there is a link for a website with further info and maps for the trails,
+                also more photos.
+    
+                But, please do not waiste any time, just grab your hiking gear or you bike and head for the trails,
+                chances are there is alwais a sunny day in a city near you. Our app will give you the power to
+                be in the right place in the right time and in the right weather conditions, to get healthier, and
+                to fight the viruses easier!
+    
+                p.s. there were no bikes injured during the creation of this app.
+    
+                Happy trailing!
+    
+            </p>
+        </div>
+</div>
+</div>
+    <script type="text/javascript" src="js/script1.js"></script>
+</body>
+
+</html>

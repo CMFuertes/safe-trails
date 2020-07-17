@@ -32,7 +32,7 @@
       $("#state-name").html("The State/Territory of: " + (response[selectedState].state));
       $("#state-increase").html("Had an increase of: " + (response[selectedState].positiveIncrease) + " cases since,  " + (response[selectedState].dateChecked));
       $("#total-cases").html("Total positive cases: " + (response[selectedState].positive));
-      $("#alert").html("<br><b>Notice:</b><br>Be advised that your destination may have travel restrictions in place. Please check before embarking.");
+      $("#alert").html("<br><b>Notice:</b><br>Be advised that your destination may have travel restrictions in place. Please check <b>before</b> embarking.");
 
 
 

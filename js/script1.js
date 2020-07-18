@@ -20,7 +20,7 @@ $(document).ready(function () {
     var radius;
     var results;
 
-
+// on click function for updating  the below 3 variables from user preferences modal
     $(".modal-close").on("click", function (APIkey3) {
 
         APIkey3 = $("#APIkey3").val().trim();
@@ -59,28 +59,9 @@ $(document).ready(function () {
                 console.log(response);
                 localStorage.setItem("responseString", JSON.stringify(response));
 
-                // cityDiv = $(".city");
-                // cityDiv.removeClass("no-show");
-                // cityDiv.addClass("cities-view");
-
-                // var cityName = response.city.name;
+        // getting the lon and lat for the given city to be used for the next 2 api calls
                 lat = response.city.coord.lat;
                 lon = response.city.coord.lon;
-
-                // var humidityD = response.list[3].main.humidity;
-                // var windSpeedDm = response.list[3].wind.speed;
-                // var windSpeedD = (windSpeedDm * 2.237).toFixed(1);
-
-                // var presentDate = moment().format('MMM Do YYYY');
-                // $(cityDiv).html(cityName + " (" + presentDate + ")");
-                // $(".wind").text("Wind: " + windSpeedD + " M/pH");
-                // $(".humidity").text("Humidity: " + humidityD + " %");
-
-                // $("#cities-view").prepend(cityDiv);
-
-                // var weatherIcon = response.list[2].weather[0].icon;
-                // var imgURL = "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
-
 
                 $(".fd-forecast").removeClass("no-show");
 
@@ -94,37 +75,21 @@ $(document).ready(function () {
             // debug Mode  uses saved last responce for debugging , no actual ajax calls=============
             debugResponse = JSON.parse(localStorage.getItem("responseString"));
             console.log(debugResponse);
-            // cityDiv = $(".city");
-            // cityDiv.removeClass("no-show");
-            // cityDiv.addClass("cities-view");
 
-            // var cityName = debugResponse.city.name;
             lat = debugResponse.city.coord.lat;
             lon = debugResponse.city.coord.lon;
 
             console.log("lat  " + lat);
             console.log("lon  " + lon);
 
-            // var humidityD = debugResponse.list[3].main.humidity;
-            // var windSpeedDm = debugResponse.list[3].wind.speed;
-            // var windSpeedD = (windSpeedDm * 2.237).toFixed(1);
-
-            // var presentDate = moment().format('MMM Do YYYY');
-            // $(cityDiv).html(cityName + " (" + presentDate + ")");
-            // $(".wind").text("Wind Speed: " + windSpeedD + " M/pH");
-            // $(".humidity").text("Humidity: " + humidityD + " %");
-
-            // $("#cities-view").prepend(cityDiv);
-            // console.log(debugResponse.list[3]);
-            // var weatherIcon = debugResponse.list[2].weather[0].icon;
-            // var imgURL = "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
+            
 
             $(".fd-forecast").removeClass("no-show");
 
-            // calling the function for displaying and setting class to the UV -Index
+          
             findBikeTrails(lon, lat);
             displayUv();
-            //debug module for this ajax call ends here==============================================
+          
 
         }
 
@@ -285,11 +250,10 @@ $(document).ready(function () {
 
 
 
-    //second trails api
+    // trails api
 
     function findBikeTrails(lon, lat) {
-        // var lat = 40.499;
-        // var lon = -74.399;
+     // for some reason in chrome the APIkey value from the user preferences does not work , so it is placed here manually
         APIkey3 = "6f4c62189fmshacee60036d76b2cp101a45jsn8679c155c21e";
         var pages = 1;
         var perPage = 20;
@@ -310,7 +274,10 @@ $(document).ready(function () {
                 localStorage.setItem("responseString3", JSON.stringify(response));
                 console.log("response 3 :");
                 console.log(response);
-                var data = response.data;
+                
+
+                // setting local variables
+                // forloop for creating and filling in of the card elements
 
                 for (var i = 0; i < response.data.length; i++) {
                     var aCity = response.data[i].city
@@ -326,18 +293,15 @@ $(document).ready(function () {
                     var aId = response.data[i].id;
                     var aDifficulty = response.data[i].difficulty;
 
-                    // var newRowDiv = $('<div class="row">');
+                
                     var news12m7 = $('<div class="col s7 m6">');
                     var newCard = $('<div class="card">');
                     var newCardImg = $('<div class="card-image">');
-                    $(newCardImg).addClass("waves-effect waves-block waves-light");
                     var newCardCont = $('<div class="card-content">');
-                    // var newCardAct = $('<div class="card-action">');
+                    
                     var pOne = $('<p>');
                     var s1 = $('<span class="card-title">');
                     var s2 = $('<span class="card-title">');
-                    $(s1).addClass("activator grey-text text-darken-4");
-                    $(s2).addClass("grey-text text-darken-4");
                     var pThree = $('<p>');
                     var pFour = $('<p>');
                     var pFive = $('<p>');
@@ -348,17 +312,18 @@ $(document).ready(function () {
                     var iOne = $('<img class="activator">');
                     var l1 = $('<a>');
                     var newCardReveal = $('<div>');
-
+                    
+                    
+                    
+                    
+                    
+                    $(newCardImg).addClass("waves-effect waves-block waves-light");
+                    $(s1).addClass("activator grey-text text-darken-4");
+                    $(s2).addClass("grey-text text-darken-4");
                     $(s1).html(`Name: ${aName}<i class="material-icons right">Click for More</i>`);
                     $(s2).html(`Name: ${aName}<i class="material-icons right">close</i>`);
-                    var cardReveal = ('<div>');
                     $(newCardReveal).addClass("card-reveal");
-
-
-
-
                     $(pOne).text("Location of the trail: " + aCity + "," + aState);
-
                     pThree.html("Directions:  " + aDirections);
                     pFour.html("Description:  " + aDescription);
                     pFive.text("Length of the trail:  " + aLength);
@@ -374,19 +339,13 @@ $(document).ready(function () {
                     l1.text("Link to the trail website");
                     pNine.html(l1);
 
-
-
-
-
-
+                   //appending all new elements on the page
                     $(newCardReveal).append(s2);
                     $(newCardReveal).append(pFour);
                     $(newCardReveal).append(pFive);
                     $(newCardReveal).append(pSix);
                     $(newCardReveal).append(pEight);
                     $(newCardReveal).append(pThree);
-
-                    // $(newCard).append(newCardAct);
                     $(newCardReveal).append(pOne);
                     $(newCardCont).append(s1);
                     $(newCardCont).append(pNine);
@@ -396,17 +355,18 @@ $(document).ready(function () {
                     $(newCard).append(newCardImg);
                     $(newCard).append(newCardCont);
                     $(news12m7).append(newCard);
-                    // $(newRowDiv).append(news12m7);
                     $("#bike-trails-list").append(news12m7);
 
                 }
             });
         }
         else {
+           // same as above but uses a saved object from local storage to avoid additional calls during debugs and testing
             debugResponse3 = JSON.parse(localStorage.getItem("responseString3"));
             console.log(debugResponse3);
             console.log("debugResponse3");
             for (var i = 0; i < debugResponse3.data.length; i++) {
+              //getting data from the saved object debugResponse3  
                 var aCity = debugResponse3.data[i].city
                 var aState = debugResponse3.data[i].region;
                 var aName = debugResponse3.data[i].name;
@@ -416,22 +376,17 @@ $(document).ready(function () {
                 var aRaiting = debugResponse3.data[i].rating;
                 var aImg = debugResponse3.data[i].thumbnail;
                 var aUrl = debugResponse3.data[i].url;
-
                 var aId = debugResponse3.data[i].id;
                 var aDifficulty = debugResponse3.data[i].difficulty;
 
-                // var newRowDiv = $('<div class="row">');
+            //reating new ellements to build a card
                 var news12m7 = $('<div class="col s7 m6">');
                 var newCard = $('<div class="card">');
                 var newCardImg = $('<div class="card-image">');
-                $(newCardImg).addClass("waves-effect waves-block waves-light");
                 var newCardCont = $('<div class="card-content">');
-                // var newCardAct = $('<div class="card-action">');
                 var pOne = $('<p>');
                 var s1 = $('<span class="card-title">');
                 var s2 = $('<span class="card-title">');
-                $(s1).addClass("activator grey-text text-darken-4");
-                $(s2).addClass("grey-text text-darken-4");
                 var pThree = $('<p>');
                 var pFour = $('<p>');
                 var pFive = $('<p>');
@@ -442,17 +397,16 @@ $(document).ready(function () {
                 var iOne = $('<img class="activator">');
                 var l1 = $('<a>');
                 var newCardReveal = $('<div>');
-
+                
+                
+                // adding attributes, classes , text and html as needed
+                $(newCardImg).addClass("waves-effect waves-block waves-light");
+                $(s1).addClass("activator grey-text text-darken-4");
+                $(s2).addClass("grey-text text-darken-4");
                 $(s1).html(`Name: ${aName}<i class="material-icons right">Click for More</i>`);
                 $(s2).html(`Name: ${aName}<i class="material-icons right">close</i>`);
-                var cardReveal = ('<div>');
                 $(newCardReveal).addClass("card-reveal");
-
-
-
-
                 $(pOne).text("Location of the trail: " + aCity + "," + aState);
-
                 pThree.html("Directions:  " + aDirections);
                 pFour.html("Description:  " + aDescription);
                 pFive.text("Length of the trail:  " + aLength);
@@ -468,19 +422,13 @@ $(document).ready(function () {
                 l1.text("Link to the trail website");
                 pNine.html(l1);
 
-
-
-
-
-
+                // appending the prepared new elements 
                 $(newCardReveal).append(s2);
                 $(newCardReveal).append(pFour);
                 $(newCardReveal).append(pFive);
                 $(newCardReveal).append(pSix);
                 $(newCardReveal).append(pEight);
                 $(newCardReveal).append(pThree);
-
-                // $(newCard).append(newCardAct);
                 $(newCardReveal).append(pOne);
                 $(newCardCont).append(s1);
                 $(newCardCont).append(pNine);
@@ -490,7 +438,6 @@ $(document).ready(function () {
                 $(newCard).append(newCardImg);
                 $(newCard).append(newCardCont);
                 $(news12m7).append(newCard);
-                // $(newRowDiv).append(news12m7);
                 $("#bike-trails-list").append(news12m7);
 
             }

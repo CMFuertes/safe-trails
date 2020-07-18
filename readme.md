@@ -39,5 +39,5 @@ Use this [project presentation template](https://docs.google.com/presentation/d/
 [link to the deployed application](https://zhim57.github.io/safe-trails)
 
 ![screenshot working application](Capture1.JPG)
-![screenshot working application](Capture1.JPG)
+![screenshot working application](Capture2.JPG)
 

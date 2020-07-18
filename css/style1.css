@@ -40,7 +40,7 @@ header
 {
    text-align: center;
    color: #fbfdfe;
-   background-image: url(/assets/images/trail-cropped1.jpg);
+   background-image :url(../assets/images/trail-cropped1.jpg);
    font-size: 40px;
    font-weight: 500;
    line-height: 30px;

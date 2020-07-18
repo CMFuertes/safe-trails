@@ -7,7 +7,10 @@
   }); // end of document ready
   $(document).ready(function () {
     $('select').formSelect();
+    var states = JSON.parse(localStorage.getItem("statesNew")) || []; //when page loads get states from local storage, for loop
   });
+
+  var stateData = {};
 
   $("#submit").on("click", function (event) {
 
@@ -32,31 +35,20 @@
       $("#state-name").html("The State of: " + (response[selectedState].state));
       $("#state-increase").html("Had an increase of: " + (response[selectedState].positiveIncrease) + " cases since,  " + (response[selectedState].dateChecked));
       $("#total-cases").html("Total positive cases: " + (response[selectedState].positive));
-      $("#alert").html("<br><b>Notice:</b><br>Be advised that your destination may have travel restrictions in place. Please check <b>before</b> embarking.");
+      $("#alert").html("<br><b>Alert:</b><br>Be advised that your destination may have travel restrictions in place. Please check <b>before</b> embarking.");
+
+      stateData.state = response[selectedState].state;
+      stateData.cases = response[selectedState].positiveIncrease;
+      stateData.total = response[selectedState].positive;
+      stateData.date = response[selectedState].dateChecked;
+      console.log("state data:", stateData);
 
 
-
-
-
-
-
-      $(".saveState").on("click", function () {
-        console.log("save me");
-        var savedStateAbr = (response[selectedState].state)
-        console.log(savedStateAbr)
-        localStorage.setItem("stateAbr", JSON.stringify(savedStateAbr));
-        var stateIncrease = (response[selectedState].positiveIncrease);
-        console.log(stateIncrease);
-        localStorage.setItem("statePosInc", JSON.stringify(stateIncrease));
-        var stateTotal = (response[selectedState].positive);
-        console.log(stateTotal);
-        localStorage.setItem("totalCases", JSON.stringify(stateTotal));
-
-        localStorage.getItem("stateAbr");
-
-      });
 
     });
+
+    
   });
+
 
 })(jQuery); // end of jQuery name space

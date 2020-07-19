@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     var lat = "";
     var lon = "";
-    var cityDiv;
+    var city;
     var cardsFull = true;
     var debugMode = false;
     var debugResponse;
@@ -19,8 +19,11 @@ $(document).ready(function () {
     var APIkey3;
     var radius;
     var results;
+    var cityDebug;
+    var cityDebug1;
 
-// on click function for updating  the below 3 variables from user preferences modal
+
+    // on click function for updating  the below 3 variables from user preferences modal
     $(".modal-close").on("click", function (APIkey3) {
 
         APIkey3 = $("#APIkey3").val().trim();
@@ -43,13 +46,22 @@ $(document).ready(function () {
 
     $("#submit-city").on("click", function (event) {
         event.preventDefault();
-        var city = $("#city-input").val().trim();
-
+        city = $("#city-input").val().trim();
         // APIkey1 = "f2e73a675d880326530db1f8aee7437b";
         var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIkey1;
-
+        cityDebug = localStorage.getItem("city");
+       
+      
+        console.log(cityDebug);
+        console.log(city);
+        
         // Creating an AJAX call for the specific city button being clicked
-        if (debugMode === false) {
+        //if the program is in a debugMode or if the city already is in local storage , 
+        // the call would be avoided and data red from local storage instead
+        if (debugMode === false && city !== cityDebug) {
+            
+            console.log("ajax call 1");
+
             $.ajax({
                 url: queryURL,
                 method: "GET"
@@ -58,8 +70,9 @@ $(document).ready(function () {
                 console.log("response 1 :");
                 console.log(response);
                 localStorage.setItem("responseString", JSON.stringify(response));
+                console.log("ajax call ");
 
-        // getting the lon and lat for the given city to be used for the next 2 api calls
+                // getting the lon and lat for the given city to be used for the next 2 api calls
                 lat = response.city.coord.lat;
                 lon = response.city.coord.lon;
 
@@ -75,6 +88,8 @@ $(document).ready(function () {
             // debug Mode  uses saved last responce for debugging , no actual ajax calls=============
             debugResponse = JSON.parse(localStorage.getItem("responseString"));
             console.log(debugResponse);
+            console.log("debugResponse");
+           
 
             lat = debugResponse.city.coord.lat;
             lon = debugResponse.city.coord.lon;
@@ -82,14 +97,14 @@ $(document).ready(function () {
             console.log("lat  " + lat);
             console.log("lon  " + lon);
 
-            
+
 
             $(".fd-forecast").removeClass("no-show");
 
-          
+
             findBikeTrails(lon, lat);
             displayUv();
-          
+
 
         }
 
@@ -107,13 +122,13 @@ $(document).ready(function () {
             + lon + "&exclude=minutely,hourly&appid=" + APIkey2;
 
         // Creating an AJAX call for the specific city button being clicked by Lat and Lon
-        if (debugMode === false) {
+        if (debugMode === false && city !== cityDebug) {
             $.ajax({
                 url: queryURL,
                 method: "GET"
             }).then(function (response) {
                 console.log("response 2 :");
-
+                console.log("ajax call 2 ");
                 console.log(response);
                 localStorage.setItem("responseString1", JSON.stringify(response));
 
@@ -181,6 +196,7 @@ $(document).ready(function () {
         else {
             debugResponse1 = JSON.parse(localStorage.getItem("responseString1"));
             console.log(debugResponse1);
+            console.log("debugResponse2");
 
 
             createForecastDebug();
@@ -253,7 +269,7 @@ $(document).ready(function () {
     // trails api
 
     function findBikeTrails(lon, lat) {
-     // for some reason in chrome the APIkey value from the user preferences does not work , so it is placed here manually
+        // for some reason in chrome the APIkey value from the user preferences does not work , so it is placed here manually
         APIkey3 = "6f4c62189fmshacee60036d76b2cp101a45jsn8679c155c21e";
         var pages = 1;
         var perPage = 20;
@@ -269,12 +285,14 @@ $(document).ready(function () {
 
             }
         }
-        if (debugMode === false) {
+        if (debugMode === false && city !== cityDebug) {
+            cityDebug = localStorage.setItem("city", city);
             $.ajax(settings).done(function (response) {
                 localStorage.setItem("responseString3", JSON.stringify(response));
                 console.log("response 3 :");
                 console.log(response);
-                
+                console.log("ajax call 3");
+
 
                 // setting local variables
                 // forloop for creating and filling in of the card elements
@@ -293,12 +311,12 @@ $(document).ready(function () {
                     var aId = response.data[i].id;
                     var aDifficulty = response.data[i].difficulty;
 
-                
+
                     var news12m7 = $('<div class="col s7 m6">');
                     var newCard = $('<div class="card">');
                     var newCardImg = $('<div class="card-image">');
                     var newCardCont = $('<div class="card-content">');
-                    
+
                     var pOne = $('<p>');
                     var s1 = $('<span class="card-title">');
                     var s2 = $('<span class="card-title">');
@@ -312,11 +330,11 @@ $(document).ready(function () {
                     var iOne = $('<img class="activator">');
                     var l1 = $('<a>');
                     var newCardReveal = $('<div>');
-                    
-                    
-                    
-                    
-                    
+
+
+
+
+
                     $(newCardImg).addClass("waves-effect waves-block waves-light");
                     $(s1).addClass("activator grey-text text-darken-4");
                     $(s2).addClass("grey-text text-darken-4");
@@ -335,11 +353,11 @@ $(document).ready(function () {
                     pSeven.text("id: " + aId);
                     pEight.text("difficulty: " + aDifficulty);
                     l1.attr("href", aUrl);
-                    l1.attr("target","_blank");
+                    l1.attr("target", "_blank");
                     l1.text("Link to the trail website");
                     pNine.html(l1);
 
-                   //appending all new elements on the page
+                    //appending all new elements on the page
                     $(newCardReveal).append(s2);
                     $(newCardReveal).append(pFour);
                     $(newCardReveal).append(pFive);
@@ -361,12 +379,12 @@ $(document).ready(function () {
             });
         }
         else {
-           // same as above but uses a saved object from local storage to avoid additional calls during debugs and testing
+            // same as above but uses a saved object from local storage to avoid additional calls during debugs and testing
             debugResponse3 = JSON.parse(localStorage.getItem("responseString3"));
             console.log(debugResponse3);
             console.log("debugResponse3");
             for (var i = 0; i < debugResponse3.data.length; i++) {
-              //getting data from the saved object debugResponse3  
+                //getting data from the saved object debugResponse3  
                 var aCity = debugResponse3.data[i].city
                 var aState = debugResponse3.data[i].region;
                 var aName = debugResponse3.data[i].name;
@@ -379,7 +397,7 @@ $(document).ready(function () {
                 var aId = debugResponse3.data[i].id;
                 var aDifficulty = debugResponse3.data[i].difficulty;
 
-            //reating new ellements to build a card
+                //reating new ellements to build a card
                 var news12m7 = $('<div class="col s7 m6">');
                 var newCard = $('<div class="card">');
                 var newCardImg = $('<div class="card-image">');
@@ -397,8 +415,8 @@ $(document).ready(function () {
                 var iOne = $('<img class="activator">');
                 var l1 = $('<a>');
                 var newCardReveal = $('<div>');
-                
-                
+
+
                 // adding attributes, classes , text and html as needed
                 $(newCardImg).addClass("waves-effect waves-block waves-light");
                 $(s1).addClass("activator grey-text text-darken-4");
@@ -418,7 +436,7 @@ $(document).ready(function () {
                 pSeven.text("id: " + aId);
                 pEight.text("difficulty: " + aDifficulty);
                 l1.attr("href", aUrl);
-                l1.attr("target","_blank");
+                l1.attr("target", "_blank");
                 l1.text("Link to the trail website");
                 pNine.html(l1);
 

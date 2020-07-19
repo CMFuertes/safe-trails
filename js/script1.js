@@ -186,7 +186,7 @@ $(document).ready(function () {
     // trails api
     function findBikeTrails() {
         // for some reason in chrome the APIkey value from the user preferences does not work , so it is placed here manually
-        APIkey3 = "6f4c62189fmshacee60036d76b2cp101a45jsn8679c155c21e";
+        // APIkey3 = "6f4c62189fmshacee60036d76b2cp101a45jsn8679c155c21e";
         var settings = {
             "async": true,
             "crossDomain": true,

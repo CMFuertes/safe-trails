@@ -86,7 +86,7 @@ header
 }
 .switchHolder{
     margin-left: 10px;
-    color:teal;
+    color:rgb(16, 211, 211);
     font-weight: 700;
     opacity: 80%;
 }
@@ -109,4 +109,9 @@ header
 }
 .navJ  {
     color: #444;
+  }
+  .pererences{
+    font-size: 16px;
+    color:rgb(16, 211, 211);
+    font-weight: 700;
   }

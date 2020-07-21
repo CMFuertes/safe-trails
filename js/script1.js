@@ -22,7 +22,7 @@ $(document).ready(function () {
     
     // on click function for updating  the below 3 variables from user preferences modal
     $(".modal-close").on("click", function (APIkey3) {
-        APIkey3 = $("#APIkey3").val().trim();
+        // APIkey3 = $("#APIkey3").val().trim();
         radius = $("#search-radius").val().trim();
         perPage = $("#search-results").val().trim();
         console.log(APIkey3);

@@ -25,9 +25,9 @@ $(document).ready(function () {
         // APIkey3 = $("#APIkey3").val().trim();
         radius = $("#search-radius").val().trim();
         perPage = $("#search-results").val().trim();
-        console.log(APIkey3);
-        console.log(radius);
-        console.log(perPage);
+        // console.log(APIkey3);
+        // console.log(radius);
+        // console.log(perPage);
         $(".pererences").html(`radius = ${radius} miles, results = ${perPage} trails.`);
     });
     $(".pererences").html(`radius = ${radius} miles, results = ${perPage} trails.`);
@@ -37,7 +37,7 @@ $(document).ready(function () {
 
     debugModePicker.click(function () {
         debugMode = !debugMode;
-        console.log("debugMode : " + debugMode);
+        // console.log("debugMode : " + debugMode);
     });
 
 
@@ -48,24 +48,24 @@ $(document).ready(function () {
         var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIkey1;
         cityDebug = localStorage.getItem("city");
 
-        console.log(cityDebug);
-        console.log(city);
+        // console.log(cityDebug);
+        // console.log(city);
 
         // Creating an AJAX call for the specific city button being clicked
         //if the program is in a debugMode 
         // the call would be avoided and data red from local storage instead
         if (debugMode === false) {
-            console.log("ajax call 1");
+            // console.log("ajax call 1");
 
             $.ajax({
                 url: queryURL,
                 method: "GET"
             }).then(function (response) {
                 // preparing the div that will hold the city and date displayed
-                console.log("response 1 :");
-                console.log(response);
+                // console.log("response 1 :");
+                // console.log(response);
                 localStorage.setItem("responseString", JSON.stringify(response));
-                console.log("ajax call ");
+                // console.log("ajax call ");
                 // getting the lon and lat for the given city to be used for the next 2 api calls
                 lat = response.city.coord.lat;
                 lon = response.city.coord.lon;
@@ -78,12 +78,12 @@ $(document).ready(function () {
         else {
             // debug Mode  uses saved last responce for debugging , no actual ajax calls=============
             debugResponse = JSON.parse(localStorage.getItem("responseString"));
-            console.log(debugResponse);
-            console.log("debugResponse");
+            // console.log(debugResponse);
+            // console.log("debugResponse");
             lat = debugResponse.city.coord.lat;
             lon = debugResponse.city.coord.lon;
-            console.log("lat  " + lat);
-            console.log("lon  " + lon);
+            // console.log("lat  " + lat);
+            // console.log("lon  " + lon);
             $(".fd-forecast").removeClass("no-show");
             findBikeTrails();
             displayUv();
@@ -108,9 +108,9 @@ $(document).ready(function () {
                 url: queryURL,
                 method: "GET"
             }).then(function (response) {
-                console.log("response 2 :");
-                console.log("ajax call 2 ");
-                console.log(response);
+                // console.log("response 2 :");
+                // console.log("ajax call 2 ");
+                // console.log(response);
                 localStorage.setItem("responseString1", JSON.stringify(response));
                 createForecast(response);
             });
@@ -118,8 +118,8 @@ $(document).ready(function () {
         }
         else {
             debugResponse1 = JSON.parse(localStorage.getItem("responseString1"));
-            console.log(debugResponse1);
-            console.log("debugResponse1");
+            // console.log(debugResponse1);
+            // console.log("debugResponse1");
             response = debugResponse1
             createForecast(response);
 
@@ -198,9 +198,9 @@ $(document).ready(function () {
                 "x-rapidapi-key": APIkey3
             }
         }
-        console.log(settings);
-        console.log(perPage);
-        console.log(radius);
+        // console.log(settings);
+        // console.log(perPage);
+        // console.log(radius);
 
         //if the program is in a debugMode or if the city already is in local storage , 
         // the call would be avoided and data red from local storage instead
@@ -208,9 +208,9 @@ $(document).ready(function () {
             cityDebug = localStorage.setItem("city", city);
             $.ajax(settings).done(function (response) {
                 localStorage.setItem("responseString3", JSON.stringify(response));
-                console.log("response 3 :");
-                console.log(response);
-                console.log("ajax call 3");
+                // console.log("response 3 :");
+                // console.log(response);
+                // console.log("ajax call 3");
                 fillIntrailCards(response);
             });
 
@@ -218,8 +218,8 @@ $(document).ready(function () {
         else {
             // same as above but uses a saved object from local storage to avoid additional calls during debugs and testing
             debugResponse3 = JSON.parse(localStorage.getItem("responseString3"));
-            console.log(debugResponse3);
-            console.log("debugResponse3");
+            // console.log(debugResponse3);
+            // console.log("debugResponse3");
             response = debugResponse3;
             fillIntrailCards(response);
         }
